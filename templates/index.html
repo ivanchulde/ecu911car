@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Búsqueda de Placas</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 30px; }
-        input { padding: 5px; font-size: 16px; }
-        button { padding: 5px 10px; font-size: 16px; }
-        ul { list-style: none; padding: 0; }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
-    <h1>Buscar placa</h1>
+    <h1>Búsqueda de Vehículos ECU 911</h1>
     <form method="POST">
         <input type="text" name="placa" placeholder="Ingrese la placa" required>
         <button type="submit">Buscar</button>
     </form>
 
     {% if resultado %}
+        <h2>Resultado:</h2>
         {% if resultado is string %}
-            <p>❌ {{ resultado }}</p>
+            <p>{{ resultado }}</p>
         {% else %}
-            <h2>Resultados encontrados:</h2>
             <ul>
                 <li>ID: {{ resultado[0] }}</li>
                 <li>Nombres: {{ resultado[1] }}</li>
@@ -36,5 +32,7 @@
             </ul>
         {% endif %}
     {% endif %}
+
+    <p><a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
 </body>
 </html>
