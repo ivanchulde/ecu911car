@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda de Placas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        input { padding: 5px; font-size: 16px; }
+        button { padding: 5px 10px; font-size: 16px; }
+        ul { list-style: none; padding: 0; }
+    </style>
+</head>
+<body>
+    <h1>Buscar placa</h1>
+    <form method="POST">
+        <input type="text" name="placa" placeholder="Ingrese la placa" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultado %}
+        {% if resultado is string %}
+            <p>❌ {{ resultado }}</p>
+        {% else %}
+            <h2>Resultados encontrados:</h2>
+            <ul>
+                <li>ID: {{ resultado[0] }}</li>
+                <li>Nombres: {{ resultado[1] }}</li>
+                <li>Cédula: {{ resultado[2] }}</li>
+                <li>Institución: {{ resultado[3] }}</li>
+                <li>Cargo: {{ resultado[4] }}</li>
+                <li>Placa: {{ resultado[5] }}</li>
+                <li>Marca: {{ resultado[6] }}</li>
+                <li>Modelo: {{ resultado[7] }}</li>
+                <li>Tipo: {{ resultado[8] }}</li>
+                <li>Color: {{ resultado[9] }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
