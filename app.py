@@ -58,10 +58,11 @@ def index():
     return render_template("index.html", resultado=resultado)
 
 # Logout
-@app.route("/logout")
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.pop("usuario", None)
     return redirect(url_for("login"))
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

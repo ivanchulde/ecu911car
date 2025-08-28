@@ -13,14 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="../static/styles/base.css">
 </head>
 <body>
     <header>
-        <img src="{{ url_for('static', filename='images/ecu911_logo.webp') }}" alt="Logo ECU 911" id="logo">
+        <img src="../static/images/ecu911_logo.webp" alt="Logo ECU 911" id="logo">
         <span>APP PLACAS ECU 911</span>
         <form action="{{ url_for('logout') }}" method="POST" style="display:inline;">
-            <button type="submit" class="logout-btn">Cerrar sesión</button>
+            <button type="submit" class="logout-btn">Salir</button>
         </form>
 
     </header>
@@ -63,7 +63,7 @@
 
     <footer class="modern-footer">
         <div class="footer-bottom">
-            <p>&copy; <span id="current-year"></span> Designed by: Dirección Zonal de Tecnología y Soporte | Coordinación Zonal 3.</p>
+            <p>&copy; <span id="current-year"></span> Ivan Chulde | Ambato-Ecuador.</p>
             <p>Last Modified in: <span id="lastModified"></span></p>
         </div>
     </footer>
