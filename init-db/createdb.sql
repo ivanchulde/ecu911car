@@ -1,6 +1,6 @@
 CREATE TABLE registro_ingresos (
     id SERIAL PRIMARY KEY,
-    id_persona,
+    id_persona INT NULL,               -- aquí permites valores nulos
     nombres VARCHAR(100) NOT NULL,
     cedula VARCHAR(20) NOT NULL,
     placa VARCHAR(10) NOT NULL,
