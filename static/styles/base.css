@@ -25,8 +25,8 @@ body {
 /* Header */
 header {
     background-color: var(--color-primary);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 0.75rem 1rem;
 }
@@ -45,6 +45,36 @@ header span {
     justify-content: center;
     align-items: center;
 }
+
+.navigation {
+    grid-column: 2;
+    justify-content: space-around;
+    list-style: none;
+    background-color: var(--color-fifth);
+    color: var(--color-white);
+    display: flex;
+    padding: 0.5rem;
+}
+
+.navigation a {
+	display: inline;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-white);
+    border-radius: 8px;
+	}  
+
+.navigation a:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+
 
 
 /* Botón Cerrar Sesión */
@@ -75,10 +105,6 @@ header span {
 }
 
 
-
-
-
-
 /* Main */
 main {
     display: flex;
@@ -96,6 +122,7 @@ main {
     padding: 30px 40px;
     max-width: 500px;
     width: 100%;
+    margin: 20px; /* centrado y separado */
     text-align: center;
 }
 
@@ -166,7 +193,191 @@ main {
     margin: 10px 0;
 }
 
-/* Footer */
+/* Registro Manual */
+.registro-manual {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 100%;
+    margin: 20px; /* centrado y separado */
+    text-align: center;
+}
+
+.registro-manual h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.registro-manual form input[type="text"],
+.registro-manual form button {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.registro-manual form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(196,15,39,0.5);
+}
+
+.registro-manual form button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registro-manual form button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-hover-text);
+}
+
+/* Cámara de Ingreso */
+.camara-ingreso {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    width: 320px;   
+    height: auto;
+    text-align: center;
+    position: relative; /* importante para el botón */
+}
+
+.camara-ingreso h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.camara-ingreso img {
+    width: 100%;       /* Se adapta al ancho del div */
+    height: auto;      /* Mantiene proporción */
+    border-radius: 10px;
+}
+
+#btn-fullscreen {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s;
+}
+
+#btn-fullscreen:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Estilo en modo fullscreen */
+
+
+/* ----------------------------------- PAGINA DE REGISTRO DE INGRESOS ------------------------------------- */
+
+/* Contenedor de registros */
+.registros_ingreso {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 30px 40px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Formulario de filtro */
+.registros_ingreso form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.registros_ingreso form input[type="text"] {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.registros_ingreso form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(196,15,39,0.5);
+}
+
+.registros_ingreso form button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.registros_ingreso form button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-hover-text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Tabla de registros */
+.registros_ingreso table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.registros_ingreso thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.registros_ingreso th,
+.registros_ingreso td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.registros_ingreso tr:hover {
+    background-color: #f5f5f5;
+}
+
+.registros_ingreso tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Mensaje de no registros */
+.registros_ingreso td[colspan] {
+    text-align: center;
+    padding: 15px;
+    font-style: italic;
+    color: #555;
+}
+
+
+
+
+/*--------------------- Footer-------------------------------------- */
 footer.modern-footer {
     background-color: var(--color-primary);
     color: var(--color-white);

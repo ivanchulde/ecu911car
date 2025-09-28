@@ -9,9 +9,12 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: p.7891011
       POSTGRES_DB: VehiculosDB
+      TZ: "America/Guayaquil"  # <-- Zona horaria correcta
     volumes:
       - vehiculos_data:/var/lib/postgresql/data
       - ./init-db:/docker-entrypoint-initdb.d
+      - /etc/localtime:/etc/localtime:ro  # <-- sincroniza hora con host
+      - /etc/timezone:/etc/timezone:ro    # <-- sincroniza zona horaria
     networks:
       - app_net
     ports:

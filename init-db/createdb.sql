@@ -1,3 +1,12 @@
+CREATE TABLE registro_ingresos (
+    id SERIAL PRIMARY KEY,
+    id_persona INT NOT NULL,
+    nombres VARCHAR(100) NOT NULL,
+    cedula VARCHAR(20) NOT NULL,
+    placa VARCHAR(10) NOT NULL,
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE vehiculosecu911 (
     id SERIAL PRIMARY KEY,
     nombres VARCHAR(100) NOT NULL,

@@ -19,9 +19,16 @@
     <header>
         <img src="../static/images/ecu911_logo.webp" alt="Logo ECU 911" id="logo">
         <span>APP PLACAS ECU 911</span>
+               
         <form action="{{ url_for('logout') }}" method="POST" style="display:inline;">
             <button type="submit" class="logout-btn">Salir</button>
         </form>
+
+        <ul class="navigation">
+            <li class="current"><a href="{{ url_for('index') }}" id="home">Home</a></li>
+            <li><a href="{{ url_for('registro_ingresos') }}" id="registros">Registros Ingreso</a></li>
+        </ul>
+
 
     </header>
 
@@ -29,13 +36,14 @@
         <div class="main-card">
             <h1>Búsqueda de Vehículos ECU 911</h1>
 
-            {% if error %}
-                <p class="error">{{ error }}</p>
+            {% if mensaje_buscar %}
+                <p class="mensaje">{{ mensaje_buscar }}</p>
             {% endif %}
 
             <form method="POST">
                 <input type="text" name="placa" placeholder="Ingrese la placa" required>
-                <button type="submit">Buscar</button>
+                <input type="hidden" name="form_tipo" value="buscar">
+                <button type="submit">BUSCAR</button>
             </form>
 
             {% if resultado %}
@@ -44,7 +52,6 @@
                         <p>{{ resultado }}</p>
                     {% else %}
                         <ul>
-                           
                             <li>Nombres: {{ resultado[1] }}</li>
                             <li>Cédula: {{ resultado[2] }}</li>
                             <li>Institución: {{ resultado[3] }}</li>
@@ -59,6 +66,64 @@
                 </div>
             {% endif %}
         </div>
+
+        <div class="registro-manual">
+            <h2>Registro Manual</h2>
+
+            {% if mensaje_manual %}
+                <p class="mensaje">{{ mensaje_manual }}</p>
+            {% endif %}
+
+            <form method="POST">
+                <input type="text" name="nombres" placeholder="Nombres completos" required>
+                <input type="text" name="cedula" placeholder="Cédula" required>
+                <input type="text" name="placa_manual" placeholder="Placa" required>
+                <input type="hidden" name="form_tipo" value="manual">
+                <button type="submit">Registrar Manualmente</button>
+            </form>
+        </div>
+        <div class="camara-ingreso" id="camara-container"> 
+            <h2>Visualización de Cámara</h2>
+            <img id="video-camara" src="{{ url_for('video_feed') }}" alt="Cámara en Vivo">
+            
+            {% if ultima_placa %}
+                <p>Última placa detectada: {{ ultima_placa }}</p>
+            {% endif %}
+
+            <button id="btn-fullscreen" title="Pantalla completa">
+                <span>&#x26F6;</span> <!-- ícono Unicode de fullscreen -->
+            </button>
+        </div>
+
+        <script>
+            const btn = document.getElementById("btn-fullscreen");
+            const container = document.getElementById("camara-container");
+
+            btn.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    // Abrir pantalla completa
+                    if (container.requestFullscreen) {
+                        container.requestFullscreen();
+                    } else if (container.webkitRequestFullscreen) { /* Safari */
+                        container.webkitRequestFullscreen();
+                    } else if (container.msRequestFullscreen) { /* IE11 */
+                        container.msRequestFullscreen();
+                    }
+                } else {
+                    // Salir de pantalla completa
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) { /* Safari */
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) { /* IE11 */
+                        document.msExitFullscreen();
+                    }
+                }
+            });
+
+        </script>
+
+
     </main>
 
     <footer class="modern-footer">

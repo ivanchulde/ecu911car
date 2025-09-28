@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTROS INGRESOS</title>
+    <meta name="author" content="Ivan Chulde"/>
+    <meta name="description" content="Control de Acceso a la Aplicación de Vehículos del ECU 911 Ambato" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/styles/base.css">
+</head>
+<body>
+    <header>
+        <img src="../static/images/ecu911_logo.webp" alt="Logo ECU 911" id="logo">
+        <span>REGISTRO DE INGRESOS</span>
+               
+        <form action="{{ url_for('logout') }}" method="POST" style="display:inline;">
+            <button type="submit" class="logout-btn">Salir</button>
+        </form>
+
+        <ul class="navigation">
+            <li class="current"><a href="{{ url_for('index') }}" id="home">Home</a></li>
+            <li><a href="{{ url_for('registro_ingresos') }}" id="registros">Registros Ingreso</a></li>
+        </ul>
+
+    </header>
+
+    <main>
+        <div class="registros_ingreso">
+            <form method="POST">
+                <input type="text" name="filtro" placeholder="Filtrar por nombre, cédula o placa" value="{{ filtro }}">
+                <button type="submit">Filtrar</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Cédula</th>
+                        <th>Placa</th>
+                        <th>Fecha Ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in registros %}
+                    <tr>
+                        <td>{{ r[0] }}</td>
+                        <td>{{ r[1] }}</td>
+                        <td>{{ r[2] }}</td>
+                        <td>{{ r[3] }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                    {% if registros|length == 0 %}
+                    <tr>
+                        <td colspan="5">No se encontraron registros.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Ivan Chulde | Ambato-Ecuador.</p>
+            <p>Last Modified in: <span id="lastModified"></span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Año actual
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Fecha última modificación
+        document.getElementById('lastModified').textContent = document.lastModified;
+    </script>
+</body>
+</html>
